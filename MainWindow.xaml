@@ -1,0 +1,39 @@
+<Window x:Class="WalletScannerDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Wallet Inventory Analyzer (Public Demo / PoC)" Height="400" Width="640"
+        WindowStartupLocation="CenterScreen" Background="#F8FAFC">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0,0,0,12">
+            <TextBlock Text="Local Wallet Detector — Proof of Concept" FontSize="18" FontWeight="Bold" Foreground="#0F172A"/>
+            <TextBlock Text="Limited public demo: Checks Chrome Default profile for MetaMask metadata only." 
+                       FontSize="12" Foreground="#64748B" Margin="0,4,0,0"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,12">
+            <Button x:Name="BtnRunDemo" Content="Run Demo Scan" Width="140" Height="34" 
+                    Background="#2563EB" Foreground="White" FontWeight="SemiBold" 
+                    BorderThickness="0" Click="BtnRunDemo_Click"/>
+            <TextBlock x:Name="TxtStatus" Text="Idle." VerticalAlignment="Center" Margin="12,0,0,0" Foreground="#475569"/>
+        </StackPanel>
+
+        <DataGrid x:Name="DgDemoResults" Grid.Row="2" AutoGenerateColumns="False" IsReadOnly="True"
+                  Background="White" BorderBrush="#CBD5E1" BorderThickness="1" RowHeight="32">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Wallet" Binding="{Binding Name}" Width="180"/>
+                <DataGridTextColumn Header="Source" Binding="{Binding Source}" Width="200"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <TextBlock Grid.Row="3" Margin="0,12,0,0" FontSize="11" Foreground="#64748B"
+                   Text="Note: Multi-browser support, desktop wallet detection, install dates, and JSON/CSV export are excluded from this public PoC."/>
+    </Grid>
+</Window>
